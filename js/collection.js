@@ -16,8 +16,7 @@ localStorage.setItem("collection", JSON.stringify({
 let collectionArray = JSON.parse(localStorage.getItem("collection"))
 
 
-console.log(collectionArray.items[0].info)
-
+//loops through JSON from localstorage and displays every entry right now. Can be tailored to needs.
 function displayCollection(){
     let wrapper = document.getElementById("collection-wrapper")
     console.log(wrapper)
