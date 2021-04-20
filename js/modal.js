@@ -1,26 +1,26 @@
-// Get the modal
-var modal = document.getElementById("myModal");
+// Get the model
+var model = document.getElementById("myModal");
 
-// Get the button that opens the modal
+// Get the button that opens the model
 var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
+// Get the <span> element that closes the model
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the model 
 btn.onclick = function() {
-  modal.style.display = "block";
+  model.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the model
 span.onclick = function() {
-  modal.style.display = "none";
+  model.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the model, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == model) {
+    model.style.display = "none";
   }
 }
 var slideIndex = 1;
