@@ -1,5 +1,5 @@
 // Get the model
-var model = document.getElementById("myModal");
+var model = document.getElementById("mymodel");
 
 // Get the button that opens the model
 var btn = document.getElementById("myBtn");
