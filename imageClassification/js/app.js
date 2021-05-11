@@ -20,6 +20,8 @@ let facingMode = "environment"
 let vh
 let vw
 
+let videoStatus = "unpaused"
+
 function setup() {
     
     let options = {
@@ -47,7 +49,7 @@ function modelLoaded(){
 }
 
 //wait for the orientation to change
-window.addEventListener("orientationchange", function(event) {
+window.addEventListener("resize", function(event) {
     orientationChanged().then(function() {
         // Profit
         setSize();
@@ -138,6 +140,7 @@ function generatePixelValues() {
     console.log(dataArray)
     //prevent further interaction
     video.pause()
+    videoStatus = "paused"
 
     document.querySelector("video").classList.add("flash")
     document.getElementById("ring").style.display = "none"
@@ -180,6 +183,7 @@ function setupRetry(error,results){
 //remove prediction and readd UI
 function retryScan(){
     video.play()
+    videoStatus = "unpaused"
     document.getElementById("retry").remove()
     document.getElementById("prediction").remove()
     document.getElementById("ring").style.display = "inline"
@@ -226,19 +230,29 @@ function initializeWebcam(facingMode) {
             })
             // permission denied:
             .catch(function (error) {
-                let notification = document.createElement("div")
-                notification.id = "notification"
 
-                let text = document.createElement("p")
-                text.innerHTML = "Please allow us to use your camera"
-                notification.appendChild(text)
+                if(!document.querySelector("#notification")){
 
-                document.querySelector("body").appendChild(notification) 
+                    let notification = document.createElement("div")
+                    notification.id = "notification"
+
+                    let text = document.createElement("p")
+                    text.innerHTML = "Please allow us to use your camera"
+                    notification.appendChild(text)
+
+                    document.querySelector("body").appendChild(notification) 
+                }
             })
         }
         
     
 }
+
+document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState == "visible" && videoStatus == "unpaused"){
+     initializeWebcam(facingMode)
+    }
+});
 
 initializeWebcam(facingMode)
 setSize();
