@@ -1,0 +1,45 @@
+@import "partials/responsive";
+
+@import "styles/buttons";
+@import "styles/colors";
+@import "styles/fonts";
+@import "styles/headings";
+
+@import "modules/homepage-module";
+
+html, body{
+    margin: 0px;
+    overflow-x: hidden;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+section{
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.grid{
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 0;
+}
+
+.inner_grid{
+    grid-column: 1 / span 12;
+}
+
+.content_grid{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 0;
+}
