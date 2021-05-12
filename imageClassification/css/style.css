@@ -149,26 +149,6 @@ video{
 	height: 6%;
 }
 
-
-@media screen and (orientation: landscape) {
-	html {
-	  transform: rotate(-90deg);
-	  transform-origin: left top;
-	  overflow-x: hidden;
-	  position: absolute;
-	  top: 100%;
-	  left: 0;
-	}
-
-	video{
-		-webkit-transform: translateX(-50%) translateY(-50%) rotate(90deg) !important;
-	}
-
-	#notification p {
-		line-height: 100vw;
-	}
-}
-
 .flash {
 	opacity: 1;
 	-webkit-animation: flash 1s;
