@@ -9,18 +9,18 @@ let model;
 const numpixels = 100
 
 // dimensions of the video element
-let width
-let height
+let width;
+let height;
 
 // remember the pixel values. use this as training data
-let dataArray
-let facingMode = "environment"
+let dataArray;
+let facingMode = "environment";
 
 //body dimensions
-let vh
-let vw
+let vh;
+let vw;
 
-let videoStatus = "unpaused"
+let videoStatus = "unpaused";
 
 function setup() {
     
@@ -36,8 +36,7 @@ function setup() {
         model: './model/model.json',
         metadata: './model/model_meta.json',
         weights: './model/model.weights.bin'
-      }
-    
+      };
 
     model = ml5.neuralNetwork(options);
 
@@ -68,7 +67,6 @@ function webcamSnapshot() {
     context.drawImage(video, 0, 0, numpixels, numpixels)
     context.drawImage(canvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
 }
-
 
 
 document.querySelector("#ring").addEventListener("click",generatePixelValues)
@@ -116,44 +114,41 @@ function generatePixelValues() {
     setTimeout(() => {
         model.classify(dataArray,setupRetry)
     }, 1000);
-   
 
 }
 
 //show scan result and setup to scan again, removing scan button and switchcamera
 function setupRetry(error,results){
 
-    document.getElementById("loading").style.display = "none"
-    document.querySelector("video").style.filter = "brightness(100%)"
-    console.log(results)
+    document.getElementById("loading").style.display = "none";
+    document.querySelector("video").style.filter = "brightness(100%)";
+    console.log(results);
 
-    let prediction = document.createElement("div")
-    prediction.id = "prediction"
-    prediction.innerHTML = results[0]['label']
+    let prediction = document.createElement("div");
+    prediction.id = "prediction";
+    prediction.innerHTML = results[0]['label'];
 
-    document.querySelector("body").appendChild(prediction)
+    document.querySelector("body").appendChild(prediction);
 
-    let retry = document.createElement("div")
-    retry.id = "retry"
-    retry.innerHTML = "Scan something else"
-    retry.addEventListener("click",retryScan )
-    document.querySelector("body").appendChild(retry)
+    let retry = document.createElement("div");
+    retry.id = "retry";
+    retry.innerHTML = "Scan something else";
+    retry.addEventListener("click",retryScan );
+    document.querySelector("body").appendChild(retry);
 
 }
 
 //remove prediction and readd UI
 function retryScan(){
-    video.play()
-    videoStatus = "unpaused"
-    document.getElementById("retry").remove()
-    document.getElementById("prediction").remove()
-    document.getElementById("ring").style.display = "inline"
-    document.getElementById("switchCamera").style.display = "inline"
+    video.play();
+    videoStatus = "unpaused";
+    document.getElementById("retry").remove();
+    document.getElementById("prediction").remove();
+    document.getElementById("ring").style.display = "inline";
+    document.getElementById("switchCamera").style.display = "inline";
 }
 
-
-
-document.getElementById("switchCamera").addEventListener("click",switchCamera)
+document.getElementById("switchCamera").addEventListener("click",switchCamera);
 //switch between camera's on mobile
 function switchCamera(){
 
@@ -162,12 +157,12 @@ function switchCamera(){
     });
 
     if(facingMode == "environment"){
-        facingMode = "user"
+        facingMode = "user";
     }else{
-        facingMode = "environment"
+        facingMode = "environment";
     }
 
-    initializeWebcam(facingMode)
+    initializeWebcam(facingMode);
     
 }
 
@@ -186,7 +181,7 @@ function initializeWebcam(facingMode) {
             // permission granted:
             .then(function (stream) { 
                 video.srcObject = stream;
-                video.addEventListener("playing", () => initSettings())
+                video.addEventListener("playing",initSettings)
                 webcam = stream
             })
             // permission denied:
@@ -208,13 +203,13 @@ function initializeWebcam(facingMode) {
 }
 
 document.addEventListener('visibilitychange', function(){
-    if(document.visibilityState == "visible" && videoStatus == "unpaused"){
+    if(document.visibilityState === "visible" && videoStatus === "unpaused"){
         initializeWebcam(facingMode)
-    }else if(document.visibilityState == "hidden") {
+    }else if(document.visibilityState === "hidden") {
         webcam.getTracks().forEach(function(track) {
             track.stop();
         });
     }
 });
 
-initializeWebcam(facingMode)
+initializeWebcam(facingMode);

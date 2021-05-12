@@ -29,14 +29,6 @@ canvas {
 	top:0;
 }
 
-#menu svg{
-	position: relative;
-	top: 50%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
-
 video{
 	z-index:-1;
 }
@@ -80,7 +72,7 @@ video{
 	display: block;
 	height: 100%;
 }
-#menu {
+.menu {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -91,7 +83,16 @@ video{
 	z-index:20;
 }
 
-#menuBar{
+.menu svg{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	height:60%;
+}
+
+.menuBar{
 	width:100%;
 	position: absolute;
 	bottom:0;
