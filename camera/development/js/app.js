@@ -69,7 +69,7 @@ function addExamples(){
     let examples = document.getElementById("amount").value
     let type = 0;
 
-    img.src=`./garbage/${garbage[0]}/${garbage[0]}1.jpg`
+    img.src=`../garbage/${garbage[0]}/${garbage[0]}1.jpg`
 
     setTimeout(() => {
 
@@ -83,7 +83,7 @@ function addExamples(){
 
             model.addData(data, target);
 
-            img.src=`./garbage/${garbage[type]}/${garbage[type] + index}.jpg`;
+            img.src=`../garbage/${garbage[type]}/${garbage[type] + index}.jpg`;
         
             index++;
         
