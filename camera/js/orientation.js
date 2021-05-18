@@ -65,8 +65,9 @@ function openFullscreen() {
         document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
     } 
 
-    setSize();
-
+    setTimeout(() => {
+        setSize();
+    }, 200);
 }
 
 function check_fullscreen(){
