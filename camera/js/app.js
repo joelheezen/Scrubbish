@@ -33,9 +33,9 @@ function setup() {
 
     //load in some dummy model
     const modelDetails = {
-        model: './model/model.json',
-        metadata: './model/model_meta.json',
-        weights: './model/model.weights.bin'
+        model: 'camera/model/model.json',
+        metadata: 'camera/model/model_meta.json',
+        weights: 'camera/model/model.weights.bin'
       };
 
     model = ml5.neuralNetwork(options);
