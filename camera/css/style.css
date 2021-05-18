@@ -206,3 +206,11 @@ video{
     to { -webkit-transform: rotate(360deg)} 
 }
 
+#fullscreen{
+	position: absolute;
+	z-index: 20;
+	bottom: 12.2%;
+	left: 17%;
+	height: 6%;
+}
+

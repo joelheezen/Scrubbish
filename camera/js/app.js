@@ -223,3 +223,19 @@ document.addEventListener('visibilitychange', function(){
 });
 
 initializeWebcam(facingMode);
+
+document.getElementById("fullscreen").addEventListener("click", openFullscreen)
+
+function openFullscreen() {
+
+let elem = document.querySelector('body')
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+
+}
