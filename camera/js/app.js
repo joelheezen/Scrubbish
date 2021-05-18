@@ -230,7 +230,7 @@ document.getElementById("fullscreen").addEventListener("click", openFullscreen)
 
 function openFullscreen() {
 
-    let elem = document.querySelector('body')
+    let elem = document.querySelector('html')
 
     if(document.fullscreenElement != null){
 
