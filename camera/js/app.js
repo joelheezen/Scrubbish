@@ -256,4 +256,14 @@ function openFullscreen() {
 
 }
 
+function check_fullscreen(){
+    if(document.fullscreenElement != null){
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+    }else{
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    } 
+}
+
+check_fullscreen();
+
 
