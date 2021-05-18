@@ -44,6 +44,12 @@ function setUpPage(){
 	collectionArray = JSON.parse(localStorage.getItem("collection"))
 
 	displayCollection()
+	navigator.webkitPersistentStorage.queryUsageAndQuota (
+		function(usedBytes, grantedBytes) {
+			console.log('we are using ', usedBytes, ' of ', grantedBytes, 'bytes');
+		},
+		function(e) { console.log('Error', e);  }
+	);
 }
 
 
@@ -52,13 +58,13 @@ function displayCollection(){
     let wrapper = document.getElementById("collection-wrapper")
 
     for (i = 0; i < collectionArray.items.length; i++){
-        let card = document.createElement("div")
+        let card = document.createElement("card")
         wrapper.appendChild(card)
         card.innerHTML = collectionArray.items[i].info + " " + collectionArray.items[i].years
 		// uses the base64 stored in the json to make an image
 		let image = document.createElement("img")
 		image.src = collectionArray.items[i].picture
-		wrapper.appendChild(image)
+		card.appendChild(image)
     }
 
 }
