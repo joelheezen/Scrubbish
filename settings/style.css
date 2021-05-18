@@ -80,29 +80,34 @@ input[class=comment], select{
     box-sizing: border-box;
 }
 
-#menu svg{
-    position: relative;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+.menu {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 8%;
+	display:grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	z-index:20;
 }
 
-#menu {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 8%;
-    display:grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    z-index:20;
+.menu svg{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	height:55%;
 }
 
-#menuBar{
-    width:100%;
-    position: absolute;
-    bottom:0;
+.menu .active{
+	height:85% !important;
+}
+
+.menuBar{
+	width:100%;
+	position: absolute;
+	bottom:0;
 }
 
 hr{
