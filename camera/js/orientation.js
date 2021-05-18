@@ -1,3 +1,5 @@
+let fsActive = false
+
 //wait for the orientation to change
 window.addEventListener("resize", function(event) {
     orientationChanged().then(function(){
@@ -72,11 +74,20 @@ function check_fullscreen(){
 
     if(document.fullscreenElement || document.webkitFullscreenElement ||
         document.mozFullScreenElement){
+        fsActive = true
         document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
     }else{
         document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
     } 
 }
+
+document.addEventListener('visibilitychange', function(){
+
+    if(!document.hidden && fsActive){
+        openFullscreen();
+    }
+
+});
 
 check_fullscreen();
 setSize();
