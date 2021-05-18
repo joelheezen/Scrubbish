@@ -257,12 +257,13 @@ function openFullscreen() {
 }
 
 function check_fullscreen(){
-    console.log(document.fullscreenElement != null)
+    console.log(document.fullscreenElement)
 
-    if(!document.fullscreenElement != null){
-        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
-    }else{
+    if(document.fullscreenElement || document.webkitFullscreenElement ||
+        document.mozFullScreenElement){
         document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    }else{
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
     } 
 }
 
