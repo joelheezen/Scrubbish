@@ -228,14 +228,30 @@ document.getElementById("fullscreen").addEventListener("click", openFullscreen)
 
 function openFullscreen() {
 
-let elem = document.querySelector('body')
+    let elem = document.querySelector('body')
 
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
+    if(document.fullscreenElement != null){
+
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+    }else{
+        
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    } 
 
 }
+
+
