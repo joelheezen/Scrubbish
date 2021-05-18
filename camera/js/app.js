@@ -121,6 +121,7 @@ function generatePixelValues() {
 function setupRetry(error,results){
 
     document.getElementById("loading").style.display = "none";
+    
     document.querySelector("video").style.filter = "brightness(100%)";
     console.log(results);
 
@@ -133,15 +134,20 @@ function setupRetry(error,results){
     let retry = document.createElement("div");
     retry.id = "retry";
     retry.innerHTML = "Scan something else";
-    retry.addEventListener("click",retryScan );
+    retry.addEventListener("click",retryScan);
+
     document.querySelector("body").appendChild(retry);
 
 }
 
 //remove prediction and readd UI
 function retryScan(){
+
+    initializeWebcam(facingMode);
+
     video.play();
     videoStatus = "unpaused";
+
     document.getElementById("retry").remove();
     document.getElementById("prediction").remove();
     document.getElementById("ring").style.display = "inline";
@@ -203,13 +209,17 @@ function initializeWebcam(facingMode) {
 }
 
 document.addEventListener('visibilitychange', function(){
-    if(document.visibilityState === "visible" && videoStatus === "unpaused"){
+
+    if(!document.hidden && videoStatus === "unpaused"){
         initializeWebcam(facingMode)
-    }else if(document.visibilityState === "hidden") {
-        webcam.getTracks().forEach(function(track) {
+    }else if(document.hidden) {
+        try{webcam.getTracks().forEach(function(track) {
             track.stop();
-        });
+        })}catch(error){
+            
+        }
     }
+
 });
 
 initializeWebcam(facingMode);
