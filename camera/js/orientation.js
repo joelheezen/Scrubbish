@@ -35,4 +35,48 @@ function setSize(){
 
 }
 
+document.getElementById("fullscreen").addEventListener("click", openFullscreen)
+
+function openFullscreen() {
+
+    let elem = document.querySelector('html')
+
+    if(document.fullscreenElement != null){
+
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+    }else{
+        
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    } 
+
+    setSize();
+
+}
+
+function check_fullscreen(){
+    console.log(document.fullscreenElement)
+
+    if(document.fullscreenElement || document.webkitFullscreenElement ||
+        document.mozFullScreenElement){
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    }else{
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+    } 
+}
+
+check_fullscreen();
 setSize();
