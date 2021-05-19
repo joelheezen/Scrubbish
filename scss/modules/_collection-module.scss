@@ -1,25 +1,28 @@
 #collection{
-    
+
     .collection-card{
         width: 400px;
         height:100%;
         margin: 10px;
         padding: 10px;
         background-position: center center;
-        background-color: $green;
         border-radius: 15px;
-        
 
         img{
-            max-width: 300px;
-            max-height: 300px;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
             background-position: center center;
             border-radius: 12px;
         }
 
-       
-
-        
-        
+        p{
+            background-color: $green;
+            color: white;
+            border-radius: 5px;
+            padding: 0 10px;
+            width: 280px;
+            font-weight: 500;
+        }  
     }
 }

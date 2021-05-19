@@ -60,11 +60,8 @@ function displayCollection(){
     for (i = 0; i < collectionArray.items.length; i++){
         let card = document.createElement("card")
         wrapper.appendChild(card)
-        card.innerHTML = collectionArray.items[i].info + " " + collectionArray.items[i].years
-		// uses the base64 stored in the json to make an image
-		let image = document.createElement("img")
-		image.src = collectionArray.items[i].picture
-		card.appendChild(image)
+        card.innerHTML = "<p>" + collectionArray.items[i].info + " " + collectionArray.items[i].years + "</p>"
+		
     }
 
 }
