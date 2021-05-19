@@ -1,3 +1,5 @@
+let fsActive = false
+
 //wait for the orientation to change
 window.addEventListener("resize", function(event) {
     orientationChanged().then(function(){
@@ -35,4 +37,58 @@ function setSize(){
 
 }
 
+document.getElementById("fullscreen").addEventListener("click", openFullscreen)
+
+function openFullscreen() {
+
+    let elem = document.querySelector('html')
+
+    if(document.fullscreenElement != null){
+
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+    }else{
+        
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    } 
+
+    setTimeout(() => {
+        setSize();
+    }, 200);
+}
+
+function check_fullscreen(){
+    console.log(document.fullscreenElement)
+
+    if(document.fullscreenElement || document.webkitFullscreenElement ||
+        document.mozFullScreenElement){
+        fsActive = true
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+    }else{
+        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+    } 
+}
+
+document.addEventListener('visibilitychange', function(){
+
+    if(!document.hidden && fsActive){
+        openFullscreen();
+    }
+
+});
+
+check_fullscreen();
 setSize();

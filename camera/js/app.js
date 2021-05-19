@@ -33,9 +33,9 @@ function setup() {
 
     //load in some dummy model
     const modelDetails = {
-        model: './model/model.json',
-        metadata: './model/model_meta.json',
-        weights: './model/model.weights.bin'
+        model: 'camera/model/model.json',
+        metadata: 'camera/model/model_meta.json',
+        weights: 'camera/model/model.weights.bin'
       };
 
     model = ml5.neuralNetwork(options);
@@ -104,6 +104,7 @@ function generatePixelValues() {
     document.querySelector("video").classList.add("flash")
     document.getElementById("ring").style.display = "none"
     document.getElementById("switchCamera").style.display = "none"
+    document.getElementById("fullscreen").style.display = "none"
     document.querySelector("video").style.filter = "brightness(30%)"
 
     setTimeout(() => {
@@ -152,6 +153,7 @@ function retryScan(){
     document.getElementById("prediction").remove();
     document.getElementById("ring").style.display = "inline";
     document.getElementById("switchCamera").style.display = "inline";
+    document.getElementById("fullscreen").style.display = "inline";
 }
 
 document.getElementById("switchCamera").addEventListener("click",switchCamera);
@@ -223,3 +225,6 @@ document.addEventListener('visibilitychange', function(){
 });
 
 initializeWebcam(facingMode);
+
+
+
