@@ -114,7 +114,7 @@ function setupRetry(error,results){
 
     let prediction = document.createElement("div");
     prediction.id = "prediction";
-    prediction.innerHTML = results[0]['label'];
+    prediction.innerHTML = results['label'];
 
     document.querySelector("body").appendChild(prediction);
 
