@@ -52,7 +52,7 @@ function openFullscreen() {
         } else if (document.msExitFullscreen) { /* IE11 */
             document.msExitFullscreen();
         }
-        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+        document.getElementById("fullscreen").src = "assets/fullscreen1.png"
     }else{
         
         if (elem.requestFullscreen) {
@@ -62,7 +62,7 @@ function openFullscreen() {
         } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
         }
-        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+        document.getElementById("fullscreen").src = "assets/fullscreen2.png"
     } 
 
     setTimeout(() => {
@@ -71,14 +71,13 @@ function openFullscreen() {
 }
 
 function check_fullscreen(){
-    console.log(document.fullscreenElement)
 
     if(document.fullscreenElement || document.webkitFullscreenElement ||
         document.mozFullScreenElement){
         fsActive = true
-        document.getElementById("fullscreen").src = "camera/assets/fullscreen2.png"
+        document.getElementById("fullscreen").src = "assets/fullscreen2.png"
     }else{
-        document.getElementById("fullscreen").src = "camera/assets/fullscreen1.png"
+        document.getElementById("fullscreen").src = "assets/fullscreen1.png"
     } 
 }
 

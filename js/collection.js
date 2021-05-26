@@ -29,13 +29,8 @@ function setUpPage(){
 	localStorage.setItem("collection", JSON.stringify({
 		"items": [
 			{
-			"info": "lorem ipsum",
-			"years": "years to degrade",
-			"picture": result
-		},
-		{
-			"info": "lorem ipsum 2",
-			"years": "years to degrade 2",
+			"info": "Blikje",
+			"years": "2",
 			"picture": result
 		}
 	]

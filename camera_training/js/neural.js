@@ -11,14 +11,22 @@ const numpixels = 100
 
 let width
 let height
+let intervalid
 let dataArray // remember the pixel values. use this as training data
 
 function setup() {
+    
+    let options = {
+      inputs: Math.pow(numpixels,2) * 3,
+      outputs: ['label'],
+      task: 'classification',
+      debug: 'true'
+    };
 
-    model = ml5.KNNClassifier();
+    model = ml5.neuralNetwork(options);
 
 }
-
+  
 function initSettings() {
     width = video.offsetWidth
     height = video.offsetHeight
@@ -61,33 +69,55 @@ function addExamples(){
     let examples = document.getElementById("amount").value
     let type = 0;
 
-    img.src=`garbage/${garbage[0]}/${garbage[0]}1.jpg`
+    img.src=`examples/${garbage[0]}/${garbage[0]}1.jpg`
 
     setTimeout(() => {
+
         let interval = setInterval(() => {
+
             let data = generatePixelValues("img",`${type+1}/${garbage.length}`,index);
+        
+            let target = {
+                label: garbage[type]
+            };
 
-            let target = garbage[type];
+            model.addData(data, target);
 
-
-            model.addExample(data, target);
-
-            img.src=`garbage/${garbage[type]}/${garbage[type] + index}.jpg`;
-
+            img.src=`examples/${garbage[type]}/${garbage[type] + index}.jpg`;
+        
             index++;
-
+        
             if(index > examples && type !== garbage.length){
+
                 index = 1;
                 type++;
-            }
 
+            }
+        
             if(type == garbage.length){
                 clearInterval(interval);
             }
-        }, 2000);
+
+        
+        }, 500);
 
     }, 500);
 
+}
+  
+  //Indicate that the training has finished
+function finishedTraining(){
+    console.log("traning finished")
+}
+
+document.getElementById("train").addEventListener("click",train)
+
+function train(){
+    let options = {
+        epochs: document.getElementById("epoch").value
+    };
+    //model.normalizeData();
+    model.train(options,finishedTraining);
 }
 
 document.getElementById("classify").addEventListener("click",classify)
@@ -102,10 +132,11 @@ function classify(){
 //log the results of the classification
 function gotResults(error,results){
     if(error){
-        alert(error)
-        return
+      alert(error)
+      return
     }
-    alert(results["label"])
+    alert(results[0]["label"] + " " + results[0]["confidence"])
+    
 }
 
 document.getElementById("save").addEventListener("click",saveModel)
@@ -121,6 +152,8 @@ function generatePixelValues(from,type,index) {
     }else if(from == "video"){
         webcamSnapshot()
     }
+    
+    
 
     dataArray = [];
     for (let pos = 0; pos < numpixels * numpixels; pos++) {
@@ -161,8 +194,8 @@ function initializeWebcam() {
         }
 
         webcam = navigator.mediaDevices.getUserMedia(options)
-        // permission granted:
-            .then(function (stream) {
+            // permission granted:
+            .then(function (stream) { 
                 video.srcObject = stream;
                 video.addEventListener("playing", () => initSettings())
                 webcam = stream
@@ -176,11 +209,11 @@ function initializeWebcam() {
                 text.innerHTML = "Please allow us to use your camera"
                 notification.appendChild(text)
 
-                document.querySelector("body").appendChild(notification)
+                document.querySelector("body").appendChild(notification) 
             })
-    }
-
-
+        }
+        
+    
 }
 
 initializeWebcam()
