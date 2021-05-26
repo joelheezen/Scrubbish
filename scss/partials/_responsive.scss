@@ -1,0 +1,73 @@
+/* screen resolutions */
+
+@mixin large-resolution {
+    @media only screen and (max-width: 1450px) {
+      @content;
+    }
+  }
+  
+  @mixin small-resolution {
+    @media only screen and (max-width: 1270px) {
+      @content;
+    }
+  }
+  
+  @mixin ipad-landscape {
+    @media only screen and (max-width: 1024px) {
+      @content;
+    }
+  }
+  
+  @mixin ipad-portrait {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  
+  @mixin mobile {
+    @media only screen and (max-width: 520px) {
+      @content;
+    }
+  }
+  
+  
+  /* IE fixes */
+  @mixin ie11 {
+    @media all and (-ms-high-contrast:none) {
+      @content;
+    }
+  }
+  
+  @mixin safari {
+    @media not all and (min-resolution:.001dpcm) { @supports (-webkit-appearance:none) {
+      @content;
+    }}
+  }
+  
+  
+  @mixin ie-old {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      @content;
+    }
+  }
+  
+  @mixin ie-edge {
+    @supports (-ms-ime-align:auto) {
+      @content;
+    }
+  }
+  
+  .mobile-only {
+    display: none;
+    @media only screen and (max-width: 768px) {
+        display: block;
+    }
+  }
+  
+  .desktop-only {
+    display: none;
+    @media only screen and (min-width: 769px) {
+      display: block;
+    }
+  }
+  

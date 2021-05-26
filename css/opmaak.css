@@ -44,8 +44,15 @@
 /* Slides */
 .mySlides {
   display: none;
-  padding: 80px;
+  padding: 40px;
   text-align: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.mySlides img{
+  width: 100%;
+  height: auto;
 }
 
 /* Next & previous buttons */
@@ -55,7 +62,6 @@
   top: 50%;
   width: auto;
   margin-top: -30px;
-  padding: 16px;
   color: #888;
   font-weight: bold;
   font-size: 26px;
@@ -97,7 +103,7 @@
 
 /* Add a background color to the active dot/circle */
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: #b5d6d0;
 }
 
 img{
