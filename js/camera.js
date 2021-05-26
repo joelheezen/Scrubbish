@@ -24,16 +24,9 @@ let videoStatus = "unpaused";
 
 function setup() {
 
-    //load in some dummy model
-    const modelDetails = {
-        model: 'model/model.json',
-        metadata: 'model/model_meta.json',
-        weights: 'model/model.weights.bin'
-    };
-
     model = ml5.KNNClassifier();
 
-    //model.load(modelDetails, modelLoaded)
+    model.load("model/myKNN.json", modelLoaded)
 }
 
 function modelLoaded(){
