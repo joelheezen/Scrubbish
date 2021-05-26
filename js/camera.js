@@ -23,24 +23,17 @@ let vw;
 let videoStatus = "unpaused";
 
 function setup() {
-    
-    let options = {
-      inputs: Math.pow(numpixels,2) * 3,
-      outputs: ['label'],
-      task: 'classification',
-      debug: 'true'
-    };
 
     //load in some dummy model
     const modelDetails = {
-        model: 'camera/model/model.json',
-        metadata: 'camera/model/model_meta.json',
-        weights: 'camera/model/model.weights.bin'
-      };
+        model: 'model/model.json',
+        metadata: 'model/model_meta.json',
+        weights: 'model/model.weights.bin'
+    };
 
-    model = ml5.neuralNetwork(options);
+    model = ml5.KNNClassifier();
 
-    model.load(modelDetails, modelLoaded)
+    //model.load(modelDetails, modelLoaded)
 }
 
 function modelLoaded(){
