@@ -46,8 +46,6 @@ function setUpPage(){
 		function(e) { console.log('Error', e);  }
 	);
 }
-
-
 //loops through JSON from localstorage and displays every entry right now. Can be tailored to needs.
 function displayCollection(){
     let wrapper = document.getElementById("collection-wrapper")
@@ -55,12 +53,13 @@ function displayCollection(){
     for (i = 0; i < collectionArray.items.length; i++){
         let card = document.createElement("card")
         wrapper.appendChild(card)
-		// uses the base64 stored in the json to make an image
-		let image = document.createElement("img")
-		image.src = collectionArray.items[i].picture
-		card.appendChild(image)
 
-		card.innerHTML += "<p>" + collectionArray.items[i].info + " " + collectionArray.items[i].years + "</p>"
+        let image = document.createElement("img")
+        image.src = collectionArray.items[i].picture
+        card.appendChild(image)
+
+        card.innerHTML += "<p>" + collectionArray.items[i].info + " " + collectionArray.items[i].years + "</p>"
+		// uses the base64 stored in the json to make an image
 
     }
 
