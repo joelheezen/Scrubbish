@@ -110,11 +110,14 @@ function setupRetry(error,results){
     document.getElementById("loading").style.display = "none";
     
     document.querySelector("video").style.filter = "brightness(100%)";
-    console.log(results);
 
     let prediction = document.createElement("div");
     prediction.id = "prediction";
-    prediction.innerHTML = results['label'];
+
+    label = results['label']
+    results = Object.keys(results["confidencesByLabel"])
+
+    prediction.innerHTML = results[label];
 
     document.querySelector("body").appendChild(prediction);
 
