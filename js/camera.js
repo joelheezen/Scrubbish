@@ -2,6 +2,9 @@ const video = document.querySelector('video')
 const canvas = document.querySelector('#mosaic')
 const context = canvas.getContext('2d')
 
+const snapCanvas = document.querySelector('#snapCanvas')
+const snapContext = snapCanvas.getContext('2d')
+
 //neural network for detecting trash
 let model;
 
@@ -41,6 +44,9 @@ function initSettings() {
     canvas.width = width
     canvas.height = height
 
+    snapCanvas.width = width
+    snapCanvas.height = height
+
     // we need pixelization
     context.mozImageSmoothingEnabled = false
     context.webkitImageSmoothingEnabled = false
@@ -52,6 +58,9 @@ function initSettings() {
 function webcamSnapshot() {
     context.drawImage(video, 0, 0, numpixels, numpixels)
     context.drawImage(canvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
+
+    snapContext.drawImage(video, 0, 0, numpixels, numpixels)
+    snapContext.drawImage(snapCanvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
 }
 
 
@@ -82,7 +91,6 @@ function generatePixelValues() {
         dataArray.push(b)
 
     }
-    console.log(dataArray)
     //prevent further interaction
     video.pause()
     videoStatus = "paused"
@@ -106,7 +114,7 @@ function generatePixelValues() {
 
 //show scan result and setup to scan again, removing scan button and switchcamera
 function setupRetry(error,results){
-
+   
     document.getElementById("loading").style.display = "none";
     
     document.querySelector("video").style.filter = "brightness(100%)";
@@ -114,10 +122,17 @@ function setupRetry(error,results){
     let prediction = document.createElement("div");
     prediction.id = "prediction";
 
-    label = results['label']
-    results = Object.keys(results["confidencesByLabel"])
+    console.log(results)
 
-    prediction.innerHTML = results[label];
+    label = results['label']
+    type = Object.keys(results["confidencesByLabel"])
+
+    if(results["confidences"][results['label']] > 0.8){
+        prediction.innerHTML = type[label];
+        saveTrash(type[label])
+    }else{
+        prediction.innerHTML = "No trash detected";
+    }
 
     document.querySelector("body").appendChild(prediction);
 
@@ -127,10 +142,26 @@ function setupRetry(error,results){
     retry.addEventListener("click",retryScan);
 
     document.querySelector("body").appendChild(retry);
-
+    
 }
 
-//remove prediction and readd UI
+function saveTrash(trash){
+
+    let img = snapCanvas.toDataURL();   
+
+    $.ajax({
+        url:"php/save.php",
+        method:"POST",
+        data:{img: img, trash: trash},
+        cache:false,
+        success:function(data){
+            //document.querySelector("body").style.backgroundImage = `url(${data})`;
+        }
+    });
+    
+}
+
+//remove prediction and re-add UI
 function retryScan(){
 
     initializeWebcam(facingMode);
@@ -194,9 +225,10 @@ function initializeWebcam(facingMode) {
                     notification.appendChild(text)
 
                     document.querySelector("body").appendChild(notification) 
-                }
-            })
-        }
+            }
+        })
+    }
+
 }
 
 document.addEventListener('visibilitychange', function(){
@@ -214,6 +246,3 @@ document.addEventListener('visibilitychange', function(){
 });
 
 initializeWebcam(facingMode);
-
-
-
