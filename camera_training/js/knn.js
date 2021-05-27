@@ -84,7 +84,7 @@ function addExamples(){
             if(type == garbage.length){
                 clearInterval(interval);
             }
-        }, 2000);
+        }, 1000);
 
     }, 500);
 
