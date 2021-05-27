@@ -152,8 +152,8 @@ function saveTrash(trash){
     $.ajax({
         url:"php/save.php",
         method:"POST",
-        data:{img: img, trash: trash},
-        cache:true,
+        //data:{img: img, trash: trash},
+        cache:false,
         success:function(data){
             //document.querySelector("body").style.backgroundImage = `url(${data})`;
         }
