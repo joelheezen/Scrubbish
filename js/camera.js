@@ -153,7 +153,7 @@ function saveTrash(trash){
         url:"php/save.php",
         method:"POST",
         data:{img: img, trash: trash},
-        cache:false,
+        cache:true,
         success:function(data){
             //document.querySelector("body").style.backgroundImage = `url(${data})`;
         }
