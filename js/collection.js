@@ -12,6 +12,18 @@ function getBase64(file, onLoadCallback) {
 	};	
 }
 
+/* 
+	Used some sizes to see what the perfect foto size is to save in localstorage.
+	localstorage is 5MB max
+	2048*1536	1.5MB per picture		5/1.5		=3.33		3 	pics max
+	1920*1440	1.4MB per picture		5/1.4		=3.57		3 	pics max
+	1600*1200	1.0MB per picture		5/1			=5			5 	pics max
+	1440*1080	908KB per picture		5/0.908 	=5.51		5 	pics max
+	960*720		447KB per picture		5/0.447		=11.19		11 	pics max
+	640*480		214Kb per picture		5/0.214		=23.36		23	pics max
+
+	depending on amount of categories we have we can choose the resolution to save here.
+*/
 
 // button fires the function so it doesnt fire without file
 button.addEventListener("click", async function(){
@@ -44,12 +56,19 @@ function setUpPage(){
 	collectionArray = JSON.parse(localStorage.getItem("collection"))
 
 	displayCollection()
-	navigator.webkitPersistentStorage.queryUsageAndQuota (
-		function(usedBytes, grantedBytes) {
-			console.log('we are using ', usedBytes, ' of ', grantedBytes, 'bytes');
-		},
-		function(e) { console.log('Error', e);  }
-	);
+
+	if (localStorage && !localStorage.getItem('size')) {
+		var i = 0;
+		try {
+			// Test up to 10 MB
+			for (i = 250; i <= 10000; i += 250) {
+				localStorage.setItem('test', new Array((i * 1024) + 1).join('a'));
+			}
+		} catch (e) {
+			localStorage.removeItem('test');
+			localStorage.setItem('size', i - 250);            
+		}
+	}
 }
 
 
