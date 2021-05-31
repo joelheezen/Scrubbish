@@ -2,8 +2,6 @@
 
     if(isset($_POST['trash'])){
 
-        echo $_POST['img'];
-
         //get file
         $jsonString = file_get_contents('../userData/savedTrash.json');
         $data = json_decode($jsonString, true);

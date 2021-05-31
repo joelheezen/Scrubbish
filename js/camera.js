@@ -127,7 +127,7 @@ function setupRetry(error,results){
     label = results['label']
     type = Object.keys(results["confidencesByLabel"])
 
-    if(results["confidences"][results['label']] > 0.8){
+    if(results["confidences"][results['label']] > 0.3){
         prediction.innerHTML = type[label];
         saveTrash(type[label])
     }else{
