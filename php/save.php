@@ -1,14 +1,14 @@
 <?php
 
-    if(isset($_GET['trash'])){
+    if(isset($_POST['trash'])){
 
         //get file
         $jsonString = file_get_contents('../userData/savedTrash.json');
         $data = json_decode($jsonString, true);
 
         //do stuff to it
-        $data[$_GET['trash']]['collected'] += 1;
-        $data[$_GET['trash']]['image'] = $_GET['img'];
+        $data[$_POST['trash']]['collected'] += 1;
+        $data[$_POST['trash']]['image'] = $_POST['img'];
 
         //send stuff back
         $newJsonString = json_encode($data);
