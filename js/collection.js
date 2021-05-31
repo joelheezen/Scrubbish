@@ -41,13 +41,8 @@ function setUpPage(){
 	localStorage.setItem("collection", JSON.stringify({
 		"items": [
 			{
-			"info": "lorem ipsum",
-			"years": "years to degrade",
-			"picture": result
-		},
-		{
-			"info": "lorem ipsum 2",
-			"years": "years to degrade 2",
+			"info": "Blikje",
+			"years": "2",
 			"picture": result
 		}
 	]
@@ -70,8 +65,6 @@ function setUpPage(){
 		}
 	}
 }
-
-
 //loops through JSON from localstorage and displays every entry right now. Can be tailored to needs.
 function displayCollection(){
     let wrapper = document.getElementById("collection-wrapper")
@@ -79,11 +72,14 @@ function displayCollection(){
     for (i = 0; i < collectionArray.items.length; i++){
         let card = document.createElement("card")
         wrapper.appendChild(card)
-        card.innerHTML = collectionArray.items[i].info + " " + collectionArray.items[i].years
+
+        let image = document.createElement("img")
+        image.src = collectionArray.items[i].picture
+        card.appendChild(image)
+
+        card.innerHTML += "<p>" + collectionArray.items[i].info + " " + collectionArray.items[i].years + "</p>"
 		// uses the base64 stored in the json to make an image
-		let image = document.createElement("img")
-		image.src = collectionArray.items[i].picture
-		card.appendChild(image)
+
     }
 
 }
