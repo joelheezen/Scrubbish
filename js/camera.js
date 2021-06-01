@@ -59,8 +59,8 @@ function webcamSnapshot() {
     context.drawImage(video, 0, 0, numpixels, numpixels)
     context.drawImage(canvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
 
-    snapContext.drawImage(video, 0, 0, numpixels, numpixels)
-    snapContext.drawImage(snapCanvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
+    snapContext.drawImage(video, 0, 0, width, height)
+    snapContext.drawImage(snapCanvas, 0, 0, width, height, 0, 0, width, height)
 }
 
 

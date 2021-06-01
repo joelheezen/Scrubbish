@@ -18,7 +18,7 @@ canvas {
 	image-rendering: -o-crisp-edges;
 	image-rendering: pixelated;
 	-ms-interpolation-mode: nearest-neighbor;
-	display: none;
+	display: inline;
 }
 
 #interface{
