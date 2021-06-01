@@ -147,24 +147,58 @@ function setupRetry(error,results){
 
 function saveTrash(trash){
 
-    let img = snapCanvas.toDataURL();   
+    let img = snapCanvas.toDataURL();       
 
+    if (localStorage.getItem("collection") === null) {
+        
+        localStorage.setItem("collection", JSON.stringify(
+            
+            {
+            
+                "cardboard":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "plastic":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "glass":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "trash":[{
+                    "collected": "0",
+                    "picture": "dummyy"
+                }],
+                "paper":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "metal":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                
+            }
+        
+        ))
 
-    var http = new XMLHttpRequest();
-    var url = 'php/save.php';
-    var params = `img=${img}&trash=${trash}`;
-    http.open('POST', url, true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    http.onreadystatechange = function() {//Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-            console.log(http.responseText);
-        }
     }
-    http.send(params);
-    
+       
+        let collection = localStorage.getItem("collection")
+        let jsonCol = JSON.parse(collection)
+        console.log(jsonCol)
+
+        let number = parseInt(jsonCol[trash][0]["collected"])
+        number++
+
+        jsonCol[trash][0]["collected"] = number
+        jsonCol[trash][0]["picture"] = img
+
+        jsonCol = JSON.stringify(jsonCol)
+
+        localStorage.setItem("collection",jsonCol)
 }
 
 //remove prediction and re-add UI
