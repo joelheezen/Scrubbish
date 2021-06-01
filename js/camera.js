@@ -2,6 +2,9 @@ const video = document.querySelector('video')
 const canvas = document.querySelector('#mosaic')
 const context = canvas.getContext('2d')
 
+const snapCanvas = document.querySelector('#snapCanvas')
+const snapContext = snapCanvas.getContext('2d')
+
 //neural network for detecting trash
 let model;
 
@@ -24,16 +27,9 @@ let videoStatus = "unpaused";
 
 function setup() {
 
-    //load in some dummy model
-    const modelDetails = {
-        model: 'model/model.json',
-        metadata: 'model/model_meta.json',
-        weights: 'model/model.weights.bin'
-    };
-
     model = ml5.KNNClassifier();
 
-    //model.load(modelDetails, modelLoaded)
+    model.load("model/myKNN.json", modelLoaded)
 }
 
 function modelLoaded(){
@@ -48,6 +44,9 @@ function initSettings() {
     canvas.width = width
     canvas.height = height
 
+    snapCanvas.width = width
+    snapCanvas.height = height
+
     // we need pixelization
     context.mozImageSmoothingEnabled = false
     context.webkitImageSmoothingEnabled = false
@@ -59,6 +58,9 @@ function initSettings() {
 function webcamSnapshot() {
     context.drawImage(video, 0, 0, numpixels, numpixels)
     context.drawImage(canvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
+
+    snapContext.drawImage(video, 0, 0, numpixels, numpixels)
+    snapContext.drawImage(snapCanvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
 }
 
 
@@ -89,7 +91,6 @@ function generatePixelValues() {
         dataArray.push(b)
 
     }
-    console.log(dataArray)
     //prevent further interaction
     video.pause()
     videoStatus = "paused"
@@ -113,15 +114,25 @@ function generatePixelValues() {
 
 //show scan result and setup to scan again, removing scan button and switchcamera
 function setupRetry(error,results){
-
+   
     document.getElementById("loading").style.display = "none";
     
     document.querySelector("video").style.filter = "brightness(100%)";
-    console.log(results);
 
     let prediction = document.createElement("div");
     prediction.id = "prediction";
-    prediction.innerHTML = results[0]['label'];
+
+    console.log(results)
+
+    label = results['label']
+    type = Object.keys(results["confidencesByLabel"])
+
+    if(results["confidences"][results['label']] > 0.3){
+        prediction.innerHTML = type[label];
+        saveTrash(type[label])
+    }else{
+        prediction.innerHTML = "No trash detected";
+    }
 
     document.querySelector("body").appendChild(prediction);
 
@@ -131,10 +142,32 @@ function setupRetry(error,results){
     retry.addEventListener("click",retryScan);
 
     document.querySelector("body").appendChild(retry);
-
+    
 }
 
-//remove prediction and readd UI
+function saveTrash(trash){
+
+    let img = snapCanvas.toDataURL();   
+
+
+    var http = new XMLHttpRequest();
+    var url = 'php/save.php';
+    var params = `img=${img}&trash=${trash}`;
+    http.open('POST', url, true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    http.onreadystatechange = function() {//Call a function when the state changes.
+        if(http.readyState == 4 && http.status == 200) {
+            console.log(http.responseText);
+        }
+    }
+    http.send(params);
+    
+}
+
+//remove prediction and re-add UI
 function retryScan(){
 
     initializeWebcam(facingMode);
@@ -198,9 +231,10 @@ function initializeWebcam(facingMode) {
                     notification.appendChild(text)
 
                     document.querySelector("body").appendChild(notification) 
-                }
-            })
-        }
+            }
+        })
+    }
+
 }
 
 document.addEventListener('visibilitychange', function(){
@@ -218,6 +252,3 @@ document.addEventListener('visibilitychange', function(){
 });
 
 initializeWebcam(facingMode);
-
-
-
