@@ -2,8 +2,6 @@
 
     if(isset($_POST['trash'])){
 
-        echo $_POST['img'];
-
         //get file
         $jsonString = file_get_contents('../userData/savedTrash.json');
         $data = json_decode($jsonString, true);
@@ -15,7 +13,7 @@
         //send stuff back
         $newJsonString = json_encode($data);
         file_put_contents('../userData/savedTrash.json', $newJsonString);
-
+        echo "trash saved";
     }else{
         echo "No trash sent";
     }
