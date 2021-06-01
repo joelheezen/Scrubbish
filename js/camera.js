@@ -42,6 +42,7 @@ function modelLoaded(){
 function initSettings() {
     width = video.offsetWidth
     height = video.offsetHeight
+
     innerWidth = window.innerWidth
     innerHeight = window.innerHeight
 
@@ -257,6 +258,12 @@ function initializeWebcam(facingMode) {
                 video.srcObject = stream;
                 video.addEventListener("playing",initSettings)
                 webcam = stream
+
+                let notification = document.querySelector("#notification")
+
+                if(notification){
+                    notification.remove();
+                }
             })
             // permission denied:
             .catch(function (error) {
