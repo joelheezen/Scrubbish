@@ -14,6 +14,8 @@ const numpixels = 100
 // dimensions of the video element
 let width;
 let height;
+let innerHeight
+let innerWidth
 
 // remember the pixel values. use this as training data
 let dataArray;
@@ -40,12 +42,14 @@ function modelLoaded(){
 function initSettings() {
     width = video.offsetWidth
     height = video.offsetHeight
+    innerWidth = window.innerWidth
+    innerHeight = window.innerHeight
 
     canvas.width = width
     canvas.height = height
 
-    snapCanvas.width = width
-    snapCanvas.height = height
+    snapCanvas.width = innerWidth
+    snapCanvas.height = innerHeight
 
     // we need pixelization
     context.mozImageSmoothingEnabled = false
@@ -59,8 +63,10 @@ function webcamSnapshot() {
     context.drawImage(video, 0, 0, numpixels, numpixels)
     context.drawImage(canvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
 
-    snapContext.drawImage(video, 0, 0, width, height)
-    snapContext.drawImage(snapCanvas, 0, 0, width, height, 0, 0, width, height)
+    let cut = (innerWidth / 2) - (width / 2)
+
+    snapContext.drawImage(video, 0, 0, innerWidth, innerHeight)
+    snapContext.drawImage(snapCanvas, 0, 0, innerWidth, innerHeight, cut, 0, width, height)
 }
 
 
