@@ -154,7 +154,7 @@ function setupRetry(error,results){
 
 function saveTrash(trash){
 
-    let img = snapCanvas.toDataURL();       
+    let img = snapCanvas.toDataURL();
 
     if (localStorage.getItem("collection") === null) {
         
@@ -193,19 +193,18 @@ function saveTrash(trash){
 
     }
        
-        let collection = localStorage.getItem("collection")
-        let jsonCol = JSON.parse(collection)
-        console.log(jsonCol)
+        let collection = localStorage.getItem("collection");
+        let jsonCol = JSON.parse(collection);
 
-        let number = parseInt(jsonCol[trash][0]["collected"])
-        number++
+        let number = parseInt(jsonCol[trash][0]["collected"]);
+        number++;
 
-        jsonCol[trash][0]["collected"] = number
-        jsonCol[trash][0]["picture"] = img
+        jsonCol[trash][0]["collected"] = number;
+        jsonCol[trash][0]["picture"] = img;
 
-        jsonCol = JSON.stringify(jsonCol)
+        jsonCol = JSON.stringify(jsonCol);
 
-        localStorage.setItem("collection",jsonCol)
+        localStorage.setItem("collection",jsonCol);
 }
 
 //remove prediction and re-add UI
