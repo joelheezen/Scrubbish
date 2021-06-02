@@ -47,12 +47,12 @@ function displayCollection(){
 	wrapper.appendChild(cardPaper)
 	wrapper.appendChild(cardMetal)
 
-	cardCardboard.innerHTML += "<p>" + collectionArray.cardboard[0].collected + "</p>"
-	cardPlastic.innerHTML += "<p>" + collectionArray.plastic[0].collected + "</p>"
-	cardGlass.innerHTML += "<p>" + collectionArray.glass[0].collected + "</p>"
-	cardTrash.innerHTML += "<p>" + collectionArray.trash[0].collected + "</p>"
-	cardPaper.innerHTML += "<p>" + collectionArray.paper[0].collected + "</p>"
-	cardMetal.innerHTML += "<p>" + collectionArray.metal[0].collected + "</p>"
+	cardCardboard.innerHTML += "<p>" + "you have collected: " + collectionArray.cardboard[0].collected + "</p>"
+	cardPlastic.innerHTML += "<p>" + "you have collected: " + collectionArray.plastic[0].collected + "</p>"
+	cardGlass.innerHTML += "<p>" + "you have collected: " + collectionArray.glass[0].collected + "</p>"
+	cardTrash.innerHTML += "<p>" + "you have collected: " + collectionArray.trash[0].collected + "</p>"
+	cardPaper.innerHTML += "<p>" + "you have collected: " + collectionArray.paper[0].collected + "</p>"
+	cardMetal.innerHTML += "<p>" + "you have collected: " + collectionArray.metal[0].collected + "</p>"
 
 	let imageCardboard = document.createElement("img")
 	let imagePlastic = document.createElement("img")
