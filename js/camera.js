@@ -14,6 +14,8 @@ const numpixels = 100
 // dimensions of the video element
 let width;
 let height;
+let innerHeight
+let innerWidth
 
 // remember the pixel values. use this as training data
 let dataArray;
@@ -41,11 +43,14 @@ function initSettings() {
     width = video.offsetWidth
     height = video.offsetHeight
 
+    innerWidth = window.innerWidth
+    innerHeight = window.innerHeight
+
     canvas.width = width
     canvas.height = height
 
-    snapCanvas.width = width
-    snapCanvas.height = height
+    snapCanvas.width = innerWidth
+    snapCanvas.height = innerHeight
 
     // we need pixelization
     context.mozImageSmoothingEnabled = false
@@ -59,8 +64,10 @@ function webcamSnapshot() {
     context.drawImage(video, 0, 0, numpixels, numpixels)
     context.drawImage(canvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
 
-    snapContext.drawImage(video, 0, 0, numpixels, numpixels)
-    snapContext.drawImage(snapCanvas, 0, 0, numpixels, numpixels, 0, 0, width, height)
+    let cut = (innerWidth / 2) - (width / 2)
+
+    snapContext.drawImage(video, 0, 0, innerWidth, innerHeight)
+    snapContext.drawImage(snapCanvas, 0, 0, innerWidth, innerHeight, cut, 0, width, height)
 }
 
 
@@ -147,24 +154,58 @@ function setupRetry(error,results){
 
 function saveTrash(trash){
 
-    let img = snapCanvas.toDataURL();   
+    let img = snapCanvas.toDataURL();       
 
+    if (localStorage.getItem("collection") === null) {
+        
+        localStorage.setItem("collection", JSON.stringify(
+            
+            {
+            
+                "cardboard":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "plastic":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "glass":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "trash":[{
+                    "collected": "0",
+                    "picture": "dummyy"
+                }],
+                "paper":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "metal":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                
+            }
+        
+        ))
 
-    var http = new XMLHttpRequest();
-    var url = 'php/save.php';
-    var params = `img=${img}&trash=${trash}`;
-    http.open('POST', url, true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    http.onreadystatechange = function() {//Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-            console.log(http.responseText);
-        }
     }
-    http.send(params);
-    
+       
+        let collection = localStorage.getItem("collection")
+        let jsonCol = JSON.parse(collection)
+        console.log(jsonCol)
+
+        let number = parseInt(jsonCol[trash][0]["collected"])
+        number++
+
+        jsonCol[trash][0]["collected"] = number
+        jsonCol[trash][0]["picture"] = img
+
+        jsonCol = JSON.stringify(jsonCol)
+
+        localStorage.setItem("collection",jsonCol)
 }
 
 //remove prediction and re-add UI
@@ -217,6 +258,12 @@ function initializeWebcam(facingMode) {
                 video.srcObject = stream;
                 video.addEventListener("playing",initSettings)
                 webcam = stream
+
+                let notification = document.querySelector("#notification")
+
+                if(notification){
+                    notification.remove();
+                }
             })
             // permission denied:
             .catch(function (error) {
