@@ -2,15 +2,6 @@ let button = document.getElementById("upload")
 let result
 let collectionArray
 
-//puts the file through filereader and calls back the response
-function getBase64(file, onLoadCallback) {
-	var reader = new FileReader();
-	reader.readAsDataURL(file);
-	reader.onload = onLoadCallback
-	reader.onerror = function (error) {
-	  console.log('Error: ', error);
-	};	
-}
 
 /* 
 	Used some sizes to see what the perfect foto size is to save in localstorage.
@@ -27,26 +18,12 @@ function getBase64(file, onLoadCallback) {
 
 // button fires the function so it doesnt fire without file
 button.addEventListener("click", async function(){
-	let file = document.getElementById("input").files[0]
-	getBase64(file, function(e) {
-		//awaits result to be in the variable before moving on
-		result = e.target.result
+	
 		setUpPage()
 	})
 	
-})
 // makes dummy json for testing purposes
 function setUpPage(){
-
-	localStorage.setItem("collection", JSON.stringify({
-		"items": [
-			{
-			"info": "Blikje",
-			"years": "2",
-			"picture": result
-		}
-	]
-	}))
 	
 	collectionArray = JSON.parse(localStorage.getItem("collection"))
 
@@ -56,18 +33,48 @@ function setUpPage(){
 //loops through JSON from localstorage and displays every entry right now. Can be tailored to needs.
 function displayCollection(){
     let wrapper = document.getElementById("collection-wrapper")
+	let cardCardboard = document.createElement("card")
+	let cardPlastic = document.createElement("card")
+	let cardGlass = document.createElement("card")
+	let cardTrash = document.createElement("card")
+	let cardPaper = document.createElement("card")
+	let cardMetal = document.createElement("card")
 
-    for (i = 0; i < collectionArray.items.length; i++){
-        let card = document.createElement("card")
-        wrapper.appendChild(card)
+	wrapper.appendChild(cardCardboard)
+	wrapper.appendChild(cardPlastic)
+	wrapper.appendChild(cardGlass)
+	wrapper.appendChild(cardTrash)
+	wrapper.appendChild(cardPaper)
+	wrapper.appendChild(cardMetal)
 
-        let image = document.createElement("img")
-        image.src = collectionArray.items[i].picture
-        card.appendChild(image)
+	cardCardboard.innerHTML += "<p>" + collectionArray.cardboard[0].collected + "</p>"
+	cardPlastic.innerHTML += "<p>" + collectionArray.plastic[0].collected + "</p>"
+	cardGlass.innerHTML += "<p>" + collectionArray.glass[0].collected + "</p>"
+	cardTrash.innerHTML += "<p>" + collectionArray.trash[0].collected + "</p>"
+	cardPaper.innerHTML += "<p>" + collectionArray.paper[0].collected + "</p>"
+	cardMetal.innerHTML += "<p>" + collectionArray.metal[0].collected + "</p>"
 
-        card.innerHTML += "<p>" + collectionArray.items[i].info + " " + collectionArray.items[i].years + "</p>"
-		// uses the base64 stored in the json to make an image
+	let imageCardboard = document.createElement("img")
+	let imagePlastic = document.createElement("img")
+	let imageGlass = document.createElement("img")
+	let imageTrash = document.createElement("img")
+	let imagePaper = document.createElement("img")
+	let imageMetal = document.createElement("img")
 
-    }
+
+    imageCardboard.src = collectionArray.cardboard[0].picture
+	imagePlastic.src = collectionArray.plastic[0].picture
+	imageGlass.src = collectionArray.glass[0].picture
+	imageTrash.src = collectionArray.trash[0].picture
+	imagePaper.src = collectionArray.paper[0].picture
+	imageMetal.src = collectionArray.metal[0].picture
+
+    cardCardboard.appendChild(imageCardboard)
+	cardPlastic.appendChild(imagePlastic)
+	cardGlass.appendChild(imageGlass)
+	cardTrash.appendChild(imageTrash)
+	cardPaper.appendChild(imagePaper)
+	cardMetal.appendChild(imageMetal)
+	
 
 }
