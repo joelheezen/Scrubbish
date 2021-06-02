@@ -176,7 +176,7 @@ function saveTrash(trash){
                 }],
                 "trash":[{
                     "collected": "0",
-                    "picture": "dummyy"
+                    "picture": "dummy"
                 }],
                 "paper":[{
                     "collected": "0",
