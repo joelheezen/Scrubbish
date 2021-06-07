@@ -66,7 +66,7 @@ function addExamples(){
 
     let index = 2;
     let garbage = ['cardboard','metal','glass','paper','plastic','trash'];
-    let examples = document.getElementById("amount").value
+    let examples = [403,410,501,594,482,137]
     let type = 0;
 
     img.src=`examples/${garbage[0]}/${garbage[0]}1.jpg`
@@ -87,7 +87,7 @@ function addExamples(){
         
             index++;
         
-            if(index > examples && type !== garbage.length){
+            if(index > examples[type] && type !== garbage.length){
 
                 index = 1;
                 type++;
