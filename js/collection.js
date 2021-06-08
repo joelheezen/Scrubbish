@@ -58,7 +58,7 @@ function setUpPage(){
         ))
 
     }
-
+	
 	collectionArray = JSON.parse(localStorage.getItem("collection"))
 
 	displayCollection()
