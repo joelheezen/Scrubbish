@@ -3,10 +3,12 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-
-
 * {
     box-sizing: border-box;
+}
+
+.menu{
+    box-sizing:unset !important;
 }
 
 p{
