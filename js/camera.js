@@ -136,15 +136,15 @@ function generatePixelValues() {
 
 //show scan result and setup to scan again, removing scan button and switchcamera
 function setupRetry(error,results){
-   
-    if(results[0] !== undefined){
+    
+    let prediction = document.createElement("div");
+    prediction.id = "prediction";
+
+    if(results !== undefined){
 
         document.getElementById("loading").style.display = "none";
     
         document.querySelector("video").style.filter = "brightness(100%)";
-
-        let prediction = document.createElement("div");
-        prediction.id = "prediction";
 
         if(results[0]["confidence"] > 0.1){
             prediction.innerHTML = results[0]["label"]
@@ -153,15 +153,19 @@ function setupRetry(error,results){
             prediction.innerHTML = "No trash detected"
         )
 
-        document.querySelector("body").appendChild(prediction);
-
-        let retry = document.createElement("div");
-        retry.id = "retry";
-        retry.innerHTML = "Scan something else";
-        retry.addEventListener("click",retryScan);
-
-        document.querySelector("body").appendChild(retry);
+    }else{
+        prediction.innerHTML = "No trash detected"
     }
+
+    document.querySelector("body").appendChild(prediction);
+
+    let retry = document.createElement("div");
+    retry.id = "retry";
+    retry.innerHTML = "Scan something else";
+    retry.addEventListener("click",retryScan);
+
+    document.querySelector("body").appendChild(retry);
+
 }
 
 function saveTrash(trash){
