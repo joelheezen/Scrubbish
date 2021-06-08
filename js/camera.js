@@ -27,11 +27,24 @@ let vw;
 
 let videoStatus = "unpaused";
 
+const modelInfo = {
+    model: "model/model.json",
+    metadata: "model/model_meta.json",
+    weights: "model/model.weights.bin"
+}
+
 function setup() {
 
-    model = ml5.KNNClassifier();
+    let options = {
+        inputs: Math.pow(numpixels,2) * 3,
+        outputs: ['label'],
+        task: 'classification',
+        debug: 'true'
+      };
+  
+      model = ml5.neuralNetwork(options);
 
-    model.load("model/myKNN.json", modelLoaded)
+      model.load(modelInfo)
 }
 
 function modelLoaded(){
@@ -129,17 +142,13 @@ function setupRetry(error,results){
     let prediction = document.createElement("div");
     prediction.id = "prediction";
 
-    console.log(results)
+    if( results[0]["confidence"] > 0.6){
+        prediction.innerHTML = results[0]["label"]
+    }else(
+        prediction.innerHTML = "No trash detected"
+    )
 
-    label = results['label']
-    type = Object.keys(results["confidencesByLabel"])
-
-    if(results["confidences"][results['label']] > 0.3){
-        prediction.innerHTML = type[label];
-        saveTrash(type[label])
-    }else{
-        prediction.innerHTML = "No trash detected";
-    }
+    
 
     document.querySelector("body").appendChild(prediction);
 
@@ -154,7 +163,7 @@ function setupRetry(error,results){
 
 function saveTrash(trash){
 
-    let img = snapCanvas.toDataURL();       
+    let img = snapCanvas.toDataURL();
 
     if (localStorage.getItem("collection") === null) {
         
@@ -193,19 +202,18 @@ function saveTrash(trash){
 
     }
        
-        let collection = localStorage.getItem("collection")
-        let jsonCol = JSON.parse(collection)
-        console.log(jsonCol)
+        let collection = localStorage.getItem("collection");
+        let jsonCol = JSON.parse(collection);
 
-        let number = parseInt(jsonCol[trash][0]["collected"])
-        number++
+        let number = parseInt(jsonCol[trash][0]["collected"]);
+        number++;
 
-        jsonCol[trash][0]["collected"] = number
-        jsonCol[trash][0]["picture"] = img
+        jsonCol[trash][0]["collected"] = number;
+        jsonCol[trash][0]["picture"] = img;
 
-        jsonCol = JSON.stringify(jsonCol)
+        jsonCol = JSON.stringify(jsonCol);
 
-        localStorage.setItem("collection",jsonCol)
+        localStorage.setItem("collection",jsonCol);
 }
 
 //remove prediction and re-add UI
