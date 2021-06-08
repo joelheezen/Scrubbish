@@ -44,12 +44,12 @@ function displayCollection(){
 	wrapper.appendChild(cardPaper)
 	wrapper.appendChild(cardMetal)
 
-	cardCardboard.innerHTML += "<p>" + "you have collected: " + collectionArray.cardboard[0].collected + "</p>"
-	cardPlastic.innerHTML += "<p>" + "you have collected: " + collectionArray.plastic[0].collected + "</p>"
-	cardGlass.innerHTML += "<p>" + "you have collected: " + collectionArray.glass[0].collected + "</p>"
-	cardTrash.innerHTML += "<p>" + "you have collected: " + collectionArray.trash[0].collected + "</p>"
-	cardPaper.innerHTML += "<p>" + "you have collected: " + collectionArray.paper[0].collected + "</p>"
-	cardMetal.innerHTML += "<p>" + "you have collected: " + collectionArray.metal[0].collected + "</p>"
+	cardCardboard.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.cardboard[0].collected + "</b>" +" carboard pieces" + "</p>"
+	cardPlastic.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.plastic[0].collected + "</b>" + " plastic pieces" + "</p>"
+	cardGlass.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.glass[0].collected + "</b>" + " glass pieces" + "</p>"
+	cardTrash.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.trash[0].collected + "</b>" + " trash" + "</p>"
+	cardPaper.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.paper[0].collected + "</b>" + " paper pieces" + "</p>"
+	cardMetal.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.metal[0].collected + "</b>" + " metal pieces" + "</p>"
 
 	let imageCardboard = document.createElement("img")
 	let imagePlastic = document.createElement("img")
