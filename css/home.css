@@ -1,15 +1,12 @@
 body, html {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    padding-bottom: 70px;
 }
   
 .hero-image {
-    background-image:url("../assets/homepageimage.png");
-    height: 25%;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    
+    height: 25vh;
+    
     position: relative;
 }
 
