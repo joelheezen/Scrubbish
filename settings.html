@@ -1,16 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Scrubbish garbagemap</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/settings.css">
+    <title>Settings</title>
 </head>
 <body>
 
+<div class="profile">
+    <div class="column">
+        <img class="profpic" src="images/profile_pic.jpg">
+    </div>
+    <div class="column">
+        <p>Jan Jansen</p>
+        <p>Rotterdam</p>
+        <p>Voorwerpen verzameld:</p>
+    </div>
+</div>
 
+<div class="settings">
+    <h1>Instellingen</h1>
+    <hr>
+</div>
+
+<div class="settingsinc">
+    <h2>Notificaties</h2>
+    <h2>Geluid</h2>
+</div>
+
+<div class="feedback">
+    <form action="">
+        <label for="fname"><h3>Titel:</h3></label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname"><h3>Opmerking:</h3></label>
+        <input type="text" id="lname" name="lname" class="comment"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
 <div class="menu">
 
@@ -36,27 +63,14 @@
         <circle cx="21" cy="21" r="21" fill="white"/>
         <path d="M30.5201 21.709C30.5681 21.3215 30.6001 20.9185 30.6001 20.5C30.6001 20.0815 30.5681 19.6785 30.5041 19.291L33.2081 17.245C33.4481 17.059 33.5121 16.718 33.3681 16.4545L30.8081 12.161C30.6481 11.882 30.3121 11.789 30.0241 11.882L26.8401 13.122C26.1681 12.626 25.4641 12.223 24.6801 11.913L24.2001 8.62701C24.1521 8.31701 23.8801 8.10001 23.5601 8.10001H18.4401C18.1201 8.10001 17.8641 8.31701 17.8161 8.62701L17.3361 11.913C16.5521 12.223 15.8321 12.6415 15.1761 13.122L11.9921 11.882C11.7041 11.7735 11.3681 11.882 11.2081 12.161L8.64806 16.4545C8.48806 16.7335 8.55206 17.059 8.80806 17.245L11.5121 19.291C11.4481 19.6785 11.4001 20.097 11.4001 20.5C11.4001 20.903 11.4321 21.3215 11.4961 21.709L8.79206 23.755C8.55206 23.941 8.48806 24.282 8.63206 24.5455L11.1921 28.839C11.3521 29.118 11.6881 29.211 11.9761 29.118L15.1601 27.878C15.8321 28.374 16.5361 28.777 17.3201 29.087L17.8001 32.373C17.8641 32.683 18.1201 32.9 18.4401 32.9H23.5601C23.8801 32.9 24.1521 32.683 24.1841 32.373L24.6641 29.087C25.4481 28.777 26.1681 28.3585 26.8241 27.878L30.0081 29.118C30.2961 29.2265 30.6321 29.118 30.7921 28.839L33.3521 24.5455C33.5121 24.2665 33.4481 23.941 33.1921 23.755L30.5201 21.709ZM21.0001 25.15C18.3601 25.15 16.2001 23.0575 16.2001 20.5C16.2001 17.9425 18.3601 15.85 21.0001 15.85C23.6401 15.85 25.8001 17.9425 25.8001 20.5C25.8001 23.0575 23.6401 25.15 21.0001 25.15Z" fill="#389583"/>
     </svg>
+         
         
 </div>
-
 
 <svg viewBox="0 0 414 73" fill="none" class="menuBar">
     <path d="M0 0C0 0 59 14 207 14C355 14 414 0 414 0V73H0V0Z" fill="#389583"/>
 </svg>
 
 
-<!-- Map is centered on San Francisco at z15 -->
-<div class="map">
-    <iframe src='https://api.mapbox.com/styles/v1/summonedgeek/ckovaubi8e8ei17p964x6moxi.html?fresh=true&title=false&access_token=pk.eyJ1Ijoic3VtbW9uZWRnZWVrIiwiYSI6ImNrb3ZhaDBrMjA2cTQydXI0aXc4aWd0dHYifQ.o4qgVeXg8z1WvgiH0XH64Q'></iframe>
-</div>
-
-
 </body>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VtbW9uZWRnZWVrIiwiYSI6ImNrb3ZhaDBrMjA2cTQydXI0aXc4aWd0dHYifQ.o4qgVeXg8z1WvgiH0XH64Q';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/summonedgeek/ckovaubi8e8ei17p964x6moxi'
-    });
-</script>
 </html>
