@@ -98,18 +98,5 @@ document.addEventListener('visibilitychange', function(){
 
 });
 
-window.addEventListener('native.showkeyboard', keyboardShowHandler);
-
-window.addEventListener('native.hidekeyboard', keyboardHideHandler);
-
-function keyboardShowHandler(){
-    document.querySelector("menu").style.visibility = "none"
-    document.querySelector("menuBar").style.visibility = "none"
-}
-
-function keyboardHideHandler(){
-    document.querySelector("menu").style.visibility = "inline"
-    document.querySelector("menuBar").style.visibility = "inline"
-}
 
 setSize();

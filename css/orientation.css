@@ -14,8 +14,12 @@ body{
         left: 0;
     }
 
-    body,html{
-        padding-bottom: 0 !important;
+    .menu{
+        top:92vw;
+    }
+
+    .menuBar{
+        top:90.5vw;
     }
 
     video {
