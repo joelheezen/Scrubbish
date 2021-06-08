@@ -1,5 +1,4 @@
 body, html {
-    height: 100%;
     margin: 0;
 }
   
@@ -11,6 +10,7 @@ body, html {
     background-size: cover;
     position: relative;
 }
+
 
 .content_grid{
     background-color:#389583 ;
@@ -105,4 +105,9 @@ iframe{
   height: 180px;
   margin-left: 10px;
   margin-right: 10px;
+}
+.main {
+    padding: 16px;
+    margin-bottom: 30px;
+    height: 1500px; /* Used in this example to enable scrolling */
 }

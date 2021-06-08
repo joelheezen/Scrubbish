@@ -2,16 +2,65 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Using Parcel with OpenLayers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Scrubbish garbagemap</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../css/orientation.css">
 </head>
 <body>
 
-<!-- Map is centered on San Francisco at z15 -->
-<iframe src='https://api.mapbox.com/styles/v1/summonedgeek/ckovaubi8e8ei17p964x6moxi.html?fresh=true&title=false&access_token=pk.eyJ1Ijoic3VtbW9uZWRnZWVrIiwiYSI6ImNrb3ZhaDBrMjA2cTQydXI0aXc4aWd0dHYifQ.o4qgVeXg8z1WvgiH0XH64Q'>
 
+
+    <div class="menu">
+
+        <svg viewBox="0 0 29 25" fill="none">
+            <a href="../page-homepage.html">
+                <path d="M11.5208 24.3958V15.8958H17.1875V24.3958H24.2708V13.0625H28.5208L14.3542 0.3125L0.1875 13.0625H4.4375V24.3958H11.5208Z" fill="white"/>
+            </a>
+        </svg>
+            
+        <svg viewBox="0 0 27 27" fill="none">
+            <a href="../page-collection.html">
+                <path d="M26.6667 18.6667V2.66667C26.6667 1.2 25.4667 0 24 0H8C6.53333 0 5.33333 1.2 5.33333 2.66667V18.6667C5.33333 20.1333 6.53333 21.3333 8 21.3333H24C25.4667 21.3333 26.6667 20.1333 26.6667 18.6667ZM12 13.3333L14.7067 16.9467L18.6667 12L24 18.6667H8L12 13.3333ZM0 5.33333V24C0 25.4667 1.2 26.6667 2.66667 26.6667H21.3333V24H2.66667V5.33333H0Z" fill="white"/>
+            </a>
+        </svg>
+        
+        <svg width="28" height="24" viewBox="0 0 28 24" fill="none" >
+            <a href="../page-camera.html">
+                <path d="M13.9999 17.6333C16.3564 17.6333 18.2666 15.7828 18.2666 13.5C18.2666 11.2172 16.3564 9.36667 13.9999 9.36667C11.6435 9.36667 9.73328 11.2172 9.73328 13.5C9.73328 15.7828 11.6435 17.6333 13.9999 17.6333Z" fill="white"/>
+                <path d="M9.99996 0.583344L7.55996 3.16668H3.33329C1.86663 3.16668 0.666626 4.32918 0.666626 5.75001V21.25C0.666626 22.6708 1.86663 23.8333 3.33329 23.8333H24.6666C26.1333 23.8333 27.3333 22.6708 27.3333 21.25V5.75001C27.3333 4.32918 26.1333 3.16668 24.6666 3.16668H20.44L18 0.583344H9.99996ZM14 19.9583C10.32 19.9583 7.33329 17.065 7.33329 13.5C7.33329 9.93501 10.32 7.04168 14 7.04168C17.68 7.04168 20.6666 9.93501 20.6666 13.5C20.6666 17.065 17.68 19.9583 14 19.9583Z" fill="white"/>
+            </a>
+        </svg>
+
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <a href="../garbagemap/map.html">
+                <circle cx="21" cy="21" r="21" fill="white"/>
+                <path d="M31.4792 8L31.2725 8.04L24.375 10.8L16.625 8L9.34 10.5333C9.06875 10.6267 8.875 10.8667 8.875 11.1733V31.3333C8.875 31.7067 9.15917 32 9.52083 32L9.7275 31.96L16.625 29.2L24.375 32L31.66 29.4667C31.9312 29.3733 32.125 29.1333 32.125 28.8267V8.66667C32.125 8.29333 31.8408 8 31.4792 8ZM24.375 29.3333L16.625 26.52V10.6667L24.375 13.48V29.3333Z" fill="#389583"/>
+            </a>
+        </svg>
+            
+        <svg viewBox="0 0 26 25" fill="none">
+            <a href="../page-settings.html">
+                <path d="M22.5199 13.709C22.5679 13.3215 22.5999 12.9185 22.5999 12.5C22.5999 12.0815 22.5679 11.6785 22.5039 11.291L25.2079 9.24501C25.4479 9.05901 25.5119 8.71801 25.3679 8.45451L22.8079 4.16101C22.6479 3.88201 22.3119 3.78901 22.0239 3.88201L18.8399 5.12201C18.1679 4.62601 17.4639 4.22301 16.6799 3.91301L16.1999 0.627006C16.1519 0.317006 15.8799 0.100006 15.5599 0.100006H10.4399C10.1199 0.100006 9.86394 0.317006 9.81594 0.627006L9.33594 3.91301C8.55194 4.22301 7.83194 4.64151 7.17594 5.12201L3.99194 3.88201C3.70394 3.77351 3.36794 3.88201 3.20794 4.16101L0.647939 8.45451C0.487939 8.73351 0.551939 9.05901 0.807939 9.24501L3.51194 11.291C3.44794 11.6785 3.39994 12.097 3.39994 12.5C3.39994 12.903 3.43194 13.3215 3.49594 13.709L0.791939 15.755C0.551939 15.941 0.487939 16.282 0.631939 16.5455L3.19194 20.839C3.35194 21.118 3.68794 21.211 3.97594 21.118L7.15994 19.878C7.83194 20.374 8.53594 20.777 9.31994 21.087L9.79994 24.373C9.86394 24.683 10.1199 24.9 10.4399 24.9H15.5599C15.8799 24.9 16.1519 24.683 16.1839 24.373L16.6639 21.087C17.4479 20.777 18.1679 20.3585 18.8239 19.878L22.0079 21.118C22.2959 21.2265 22.6319 21.118 22.7919 20.839L25.3519 16.5455C25.5119 16.2665 25.4479 15.941 25.1919 15.755L22.5199 13.709ZM12.9999 17.15C10.3599 17.15 8.19994 15.0575 8.19994 12.5C8.19994 9.94251 10.3599 7.85001 12.9999 7.85001C15.6399 7.85001 17.7999 9.94251 17.7999 12.5C17.7999 15.0575 15.6399 17.15 12.9999 17.15Z" fill="white"/>
+            </a>
+        </svg>  
+            
+    </div>
+
+    <svg viewBox="0 0 414 73" fill="none" class="menuBar">
+        <path d="M0 0C0 0 59 14 207 14C355 14 414 0 414 0V73H0V0Z" fill="#389583"/>
+    </svg>
+
+<!-- Map is centered on San Francisco at z15 -->
+<div class="map">
+    <iframe src='https://api.mapbox.com/styles/v1/summonedgeek/ckovaubi8e8ei17p964x6moxi.html?fresh=true&title=false&access_token=pk.eyJ1Ijoic3VtbW9uZWRnZWVrIiwiYSI6ImNrb3ZhaDBrMjA2cTQydXI0aXc4aWd0dHYifQ.o4qgVeXg8z1WvgiH0XH64Q'></iframe>
+</div>
+
+
+</body>
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3VtbW9uZWRnZWVrIiwiYSI6ImNrb3ZhaDBrMjA2cTQydXI0aXc4aWd0dHYifQ.o4qgVeXg8z1WvgiH0XH64Q';
     var map = new mapboxgl.Map({
@@ -19,6 +68,5 @@
         style: 'mapbox://styles/summonedgeek/ckovaubi8e8ei17p964x6moxi'
     });
 </script>
-
-</body>
+<script src="../js/orientation.js"></script>
 </html>
