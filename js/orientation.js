@@ -4,6 +4,7 @@ let fsActive = false
 window.addEventListener("resize", function(event) {
     orientationChanged().then(function(){
         setSize();
+        checkForKeyboard();
     });
 });
 
@@ -37,70 +38,42 @@ function setSize(){
 
 }
 
-if(document.getElementById("fullscreen")){
-    document.getElementById("fullscreen").addEventListener("click", openFullscreen)
-    check_fullscreen();
-}
-
-function openFullscreen() {
-
-    let elem = document.querySelector('html')
-
-    if(document.fullscreenElement != null){
-
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-        }
-        document.getElementById("fullscreen").src = "assets/fullscreen1.png"
-    }else{
-        
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        }
-        document.getElementById("fullscreen").src = "assets/fullscreen2.png"
-    } 
-
-    setTimeout(() => {
-        setSize();
-    }, 200);
-}
-
-function check_fullscreen(){
-
-    if(document.fullscreenElement || document.webkitFullscreenElement ||
-        document.mozFullScreenElement){
-        fsActive = true
-        document.getElementById("fullscreen").src = "assets/fullscreen2.png"
-    }else{
-        document.getElementById("fullscreen").src = "assets/fullscreen1.png"
-    } 
-}
-
-document.addEventListener('visibilitychange', function(){
-
-    if(!document.hidden && fsActive){
-        openFullscreen();
-    }
-
-});
-
-
 function removeMenu(){
-    document.querySelector(".menu").style.display = "none"
-    document.querySelector(".menuBar").style.display = "none"
+    document.querySelector(".menu").style.visibility = "hidden"
 }
 
 function addMenu(){
-    document.querySelector(".menu").style.display = "grid"
-    document.querySelector(".menuBar").style.display = "inline"
+    document.querySelector(".menu").style.visibility = "visible"
+}
+
+function checkForKeyboard(){
+
+    let toTop = getPosition(document.querySelector(".menu")).y
+
+    let menuHeight = document.querySelector(".menu").offsetHeight
+
+    console.log(toTop / menuHeight)
+
+    if((toTop / menuHeight) < 5){
+        removeMenu()
+    }else{
+        addMenu()
+    }
+ 
+}
+
+function getPosition(element) {
+
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+
+    return {x: xPosition, y: yPosition};
 }
 
 setSize();
