@@ -127,7 +127,9 @@ function generatePixelValues() {
 
     //classify
     setTimeout(() => {
+
         model.classify(dataArray,setupRetry)
+
     }, 1000);
 
 }
@@ -142,7 +144,7 @@ function setupRetry(error,results){
     let prediction = document.createElement("div");
     prediction.id = "prediction";
 
-    if( results[0]["confidence"] > 0.6){
+    if( results[0]["confidence"] > 0.1){
         prediction.innerHTML = results[0]["label"]
         saveTrash(results[0]["label"])
     }else(
