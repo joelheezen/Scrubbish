@@ -22,6 +22,43 @@ setUpPage()
 	
 function setUpPage(){
 	
+	if (localStorage.getItem("collection") === null) {
+        
+        localStorage.setItem("collection", JSON.stringify(
+            
+            {
+            
+                "cardboard":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "plastic":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "glass":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "trash":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "paper":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                "metal":[{
+                    "collected": "0",
+                    "picture": "dummy"
+                }],
+                
+            }
+        
+        ))
+
+    }
+
 	collectionArray = JSON.parse(localStorage.getItem("collection"))
 
 	displayCollection()
@@ -41,7 +78,7 @@ function displayCollection(){
 		
 		let image = document.createElement("img")
 		if(collectionArray[garbage[index]][0].picture == "dummy"){
-			image.src = ""
+			image.src = "assets/dummy.png"
 		}else{
 			image.src = collectionArray[garbage[index]][0].picture
 		}

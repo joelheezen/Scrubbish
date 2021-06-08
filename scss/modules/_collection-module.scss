@@ -25,12 +25,17 @@
             p{
                 background-color: $green;
                 color: white;
+                text-align: center;
                 border-radius: 5px;
-                padding: 2px 5px ;
+                padding: 2px;
                 font-weight: 500;
                 font-size: 12px;
                 margin-top: 0;
+<<<<<<< HEAD
                 text-align:center;
+=======
+                line-height: 15px;
+>>>>>>> 166457cb3cee6c704821bda831a8bd4b1fa46b8c
                 // width: 150px;
             }  
         }
