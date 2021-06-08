@@ -29,49 +29,26 @@ function setUpPage(){
 
 //loops through JSON from localstorage and displays every entry right now. Can be tailored to needs.
 function displayCollection(){
-    let wrapper = document.getElementById("collection-wrapper")
-	let cardCardboard = document.createElement("card")
-	let cardPlastic = document.createElement("card")
-	let cardGlass = document.createElement("card")
-	let cardTrash = document.createElement("card")
-	let cardPaper = document.createElement("card")
-	let cardMetal = document.createElement("card")
-
-	wrapper.appendChild(cardCardboard)
-	wrapper.appendChild(cardPlastic)
-	wrapper.appendChild(cardGlass)
-	wrapper.appendChild(cardTrash)
-	wrapper.appendChild(cardPaper)
-	wrapper.appendChild(cardMetal)
-
-	cardCardboard.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.cardboard[0].collected + "</b>" +" carboard pieces" + "</p>"
-	cardPlastic.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.plastic[0].collected + "</b>" + " plastic pieces" + "</p>"
-	cardGlass.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.glass[0].collected + "</b>" + " glass pieces" + "</p>"
-	cardTrash.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.trash[0].collected + "</b>" + " trash" + "</p>"
-	cardPaper.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.paper[0].collected + "</b>" + " paper pieces" + "</p>"
-	cardMetal.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray.metal[0].collected + "</b>" + " metal pieces" + "</p>"
-
-	let imageCardboard = document.createElement("img")
-	let imagePlastic = document.createElement("img")
-	let imageGlass = document.createElement("img")
-	let imageTrash = document.createElement("img")
-	let imagePaper = document.createElement("img")
-	let imageMetal = document.createElement("img")
 
 
-    imageCardboard.src = collectionArray.cardboard[0].picture
-	imagePlastic.src = collectionArray.plastic[0].picture
-	imageGlass.src = collectionArray.glass[0].picture
-	imageTrash.src = collectionArray.trash[0].picture
-	imagePaper.src = collectionArray.paper[0].picture
-	imageMetal.src = collectionArray.metal[0].picture
+	let wrapper = document.getElementById("collection-wrapper")
+	let garbage = ['cardboard','metal','glass','paper','plastic','trash'];
 
-    cardCardboard.appendChild(imageCardboard)
-	cardPlastic.appendChild(imagePlastic)
-	cardGlass.appendChild(imageGlass)
-	cardTrash.appendChild(imageTrash)
-	cardPaper.appendChild(imagePaper)
-	cardMetal.appendChild(imageMetal)
-	
+	for (let index = 0; index < garbage.length; index++) {
+
+		let card = document.createElement("card")
+		card.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray[garbage[index]][0].collected + "</b>" +" carboard pieces" + "</p>"
+		
+		let image = document.createElement("img")
+		if(collectionArray[garbage[index]][0].picture == "dummy"){
+			image.src = ""
+		}else{
+			image.src = collectionArray[garbage[index]][0].picture
+		}
+		card.appendChild(image)
+		
+		wrapper.appendChild(card)
+
+	}
 
 }
