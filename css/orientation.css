@@ -4,7 +4,7 @@ body{
 	height: calc(var(--vh, 1vh) * 100);
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (min-aspect-ratio: 7/5) {
     html {
         transform: rotate(-90deg);
         transform-origin: left top;
@@ -20,3 +20,4 @@ body{
         line-height: 100vw;
     }
 }
+
