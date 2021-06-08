@@ -138,6 +138,7 @@ function generatePixelValues() {
 function setupRetry(error,results){
     
     if(results !== undefined){
+
         let prediction = document.createElement("div");
         prediction.id = "prediction";
 
@@ -159,6 +160,7 @@ function setupRetry(error,results){
         retry.addEventListener("click",retryScan);
 
         document.querySelector("body").appendChild(retry);
+        
     }
 
 }
