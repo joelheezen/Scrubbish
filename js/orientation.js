@@ -52,8 +52,6 @@ function checkForKeyboard(){
 
     let menuHeight = document.querySelector(".menu").offsetHeight
 
-    console.log(toTop / menuHeight)
-
     if((toTop / menuHeight) < 5){
         removeMenu()
     }else{
