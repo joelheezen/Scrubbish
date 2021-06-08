@@ -4,7 +4,7 @@ body{
 	height: calc(var(--vh, 1vh) * 100);
 }
 
-@media screen and (min-aspect-ratio: 7/5) {
+@media screen and (min-aspect-ratio: 13/9) {
     html {
         transform: rotate(-90deg);
         transform-origin: left top;
@@ -13,6 +13,11 @@ body{
         top: 100%;
         left: 0;
     }
+
+    body,html{
+        padding-bottom: 0 !important;
+    }
+
     video {
         -webkit-transform: translateX(-50%) translateY(-50%) rotate(90deg) !important;
     }
