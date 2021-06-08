@@ -16,13 +16,10 @@ let collectionArray
 	depending on amount of categories we have we can choose the resolution to save here.
 */
 
-// button fires the function so it doesnt fire without file
-button.addEventListener("click", async function(){
+
+setUpPage()
+
 	
-		setUpPage()
-	})
-	
-// makes dummy json for testing purposes
 function setUpPage(){
 	
 	collectionArray = JSON.parse(localStorage.getItem("collection"))
