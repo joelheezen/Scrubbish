@@ -21,9 +21,3 @@
 .menu .active{
     height:85% !important;
 }
-
-.menuBar{
-    width:100%;
-    position: fixed;
-    bottom:0;
-}
