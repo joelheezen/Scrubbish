@@ -37,7 +37,10 @@ function setSize(){
 
 }
 
-document.getElementById("fullscreen").addEventListener("click", openFullscreen)
+if(document.getElementById("fullscreen")){
+    document.getElementById("fullscreen").addEventListener("click", openFullscreen)
+    check_fullscreen();
+}
 
 function openFullscreen() {
 
@@ -89,5 +92,4 @@ document.addEventListener('visibilitychange', function(){
 
 });
 
-check_fullscreen();
 setSize();

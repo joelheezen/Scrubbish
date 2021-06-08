@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+}
+
+.map{
+    height:100%;
+    width:100%;
+}
+
+iframe{
+    height: 92.3%;
+    width: 100%;
+    border: none;
+}
