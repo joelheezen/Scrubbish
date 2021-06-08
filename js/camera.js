@@ -144,6 +144,7 @@ function setupRetry(error,results){
 
     if( results[0]["confidence"] > 0.6){
         prediction.innerHTML = results[0]["label"]
+        saveTrash(results[0]["label"])
     }else(
         prediction.innerHTML = "No trash detected"
     )
