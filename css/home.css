@@ -4,13 +4,108 @@ body, html {
   
 .hero-image {
     background-image:url("../assets/homepageimage.png");
-    height: 30%;
+    height: 24%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
 
+
+.content_grid{
+    background-color:#389583 ;
+    color: white;
+    padding-left: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin: 10px;
+    padding: 2px;
+}
+h2{
+  margin: 0px;
+  font-size: 15px;
+  padding: 2px;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+.title{
+    color: #05396B;
+}
+
+a{
+    text-decoration: none;
+}
+
+.menu {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 8%;
+	display:grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	z-index:20;
+}
+
+.menu svg{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	height:55%;
+}
+
+.menu .active{
+	height:85% !important;
+}
+
+.menuBar{
+	width:100%;
+	position: absolute;
+	bottom:0;
+}
+
+.item1 { 
+  grid-area: main; 
+}
+.item2 { 
+  grid-area: right; 
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'main main right right right';
+  grid-gap: 10px;
+  padding: 10px;
+  margin: 10px;
+  height: 40px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px 0px;
+  height: 100%;
+  width: auto;
+  color: #05396B;
+}
+.grid-container > .item1 >a> img{
+  width: 96px;
+  height: 51px;
+}
+iframe{
+  width: 93%;
+  height: 180px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .main {
     padding: 16px;
     margin-bottom: 30px;
