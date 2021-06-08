@@ -31,13 +31,6 @@ function setSize(){
         vw = window.innerHeight * 0.01;
     }
 
-    if (window.location.href.indexOf("settings") > -1 || window.location.href.indexOf("index") > -1) {
-        vh = vh + 1
-    }
-
-    
-    
-
     // Then we set the value in the --vh custom property to the root of the document
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     document.documentElement.style.setProperty('--vw', `${vw}px`);
@@ -99,5 +92,15 @@ document.addEventListener('visibilitychange', function(){
 
 });
 
+
+function removeMenu(){
+    document.querySelector(".menu").style.display = "none"
+    document.querySelector(".menuBar").style.display = "none"
+}
+
+function addMenu(){
+    document.querySelector(".menu").style.display = "grid"
+    document.querySelector(".menuBar").style.display = "inline"
+}
 
 setSize();
