@@ -137,31 +137,31 @@ function generatePixelValues() {
 //show scan result and setup to scan again, removing scan button and switchcamera
 function setupRetry(error,results){
    
-    document.getElementById("loading").style.display = "none";
+    if(results[0] !== undefined){
+
+        document.getElementById("loading").style.display = "none";
     
-    document.querySelector("video").style.filter = "brightness(100%)";
+        document.querySelector("video").style.filter = "brightness(100%)";
 
-    let prediction = document.createElement("div");
-    prediction.id = "prediction";
+        let prediction = document.createElement("div");
+        prediction.id = "prediction";
 
-    if( results[0]["confidence"] > 0.1){
-        prediction.innerHTML = results[0]["label"]
-        saveTrash(results[0]["label"])
-    }else(
-        prediction.innerHTML = "No trash detected"
-    )
+        if(results[0]["confidence"] > 0.1){
+            prediction.innerHTML = results[0]["label"]
+            saveTrash(results[0]["label"])
+        }else(
+            prediction.innerHTML = "No trash detected"
+        )
 
-    
+        document.querySelector("body").appendChild(prediction);
 
-    document.querySelector("body").appendChild(prediction);
+        let retry = document.createElement("div");
+        retry.id = "retry";
+        retry.innerHTML = "Scan something else";
+        retry.addEventListener("click",retryScan);
 
-    let retry = document.createElement("div");
-    retry.id = "retry";
-    retry.innerHTML = "Scan something else";
-    retry.addEventListener("click",retryScan);
-
-    document.querySelector("body").appendChild(retry);
-    
+        document.querySelector("body").appendChild(retry);
+    }
 }
 
 function saveTrash(trash){
