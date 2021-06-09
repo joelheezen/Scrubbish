@@ -118,7 +118,6 @@ function generatePixelValues() {
     document.querySelector("video").classList.add("flash")
     document.getElementById("ring").style.display = "none"
     document.getElementById("switchCamera").style.display = "none"
-    document.getElementById("fullscreen").style.display = "none"
     document.querySelector("video").style.filter = "brightness(30%)"
 
     setTimeout(() => {
@@ -232,7 +231,6 @@ function retryScan(){
     document.getElementById("prediction").remove();
     document.getElementById("ring").style.display = "inline";
     document.getElementById("switchCamera").style.display = "inline";
-    document.getElementById("fullscreen").style.display = "inline";
 }
 
 document.getElementById("switchCamera").addEventListener("click",switchCamera);
