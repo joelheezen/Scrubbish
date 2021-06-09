@@ -74,7 +74,7 @@ function displayCollection(){
 	for (let index = 0; index < garbage.length; index++) {
 
 		let card = document.createElement("card")
-		card.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray[garbage[index]][0].collected + "</b>" +" carboard pieces" + "</p>"
+		card.innerHTML += "<p>" + "you have collected: " + "<b>" + collectionArray[garbage[index]][0].collected + "</b>" +" " + garbage[index] + "</p>"
 		
 		let image = document.createElement("img")
 		if(collectionArray[garbage[index]][0].picture == "dummy"){
